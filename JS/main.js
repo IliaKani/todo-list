@@ -19,7 +19,7 @@ changeTheme(savedTheme);
 
 function addToDo(event) {
     event.preventDefault();
-    const todo = toDoInput.value;
+    const todo = { text: toDoInput.value, checked: false };
     saveToLocalStorage(todo);
     renderTodo(todo);
     toDoInput.value = '';
@@ -57,15 +57,22 @@ function saveToLocalStorage(todo){
 }
 
 function getTodosFromLocalStorage() {
-    return JSON.parse(localStorage.getItem('todos')) || [];
+    let storedTodos = localStorage.getItem('todos');
+    if(storedTodos === null) {
+        return [];
+    } else {
+        return JSON.parse(storedTodos);
+    }
 }
 
 function renderTodos() {
-    todos.forEach(renderTodo);
+    todos.forEach(function(todo) {
+        renderTodo(todo.text);
+    });
 }
 
 function renderTodo(todo) {
-    const toDoDiv = createToDoDiv(todo.text);
+    const toDoDiv = createToDoDiv(todo.text); // Use todo.text here
     if (todo.checked) {
         toDoDiv.classList.add('completed');
     }
