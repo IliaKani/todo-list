@@ -19,7 +19,6 @@ body {
     background-image: linear-gradient(100deg, #575656, #062e3f);
     color: #ffdfdb;
     transition: 0.3s linear;
-    overflow: hidden;
 }
 
 .light {
@@ -246,12 +245,13 @@ form button {
     justify-content: center;
     align-items: center;
     max-width: 1200px;
+    height: 95vh;
 }
 
 .todo-list {
     min-width: 25%;
-
-    /* To remove the bullets of unordered list */
+    height: 100%; 
+    overflow-y: auto; /* This will create a vertical scrollbar when needed */
     list-style: none;
 }
 
